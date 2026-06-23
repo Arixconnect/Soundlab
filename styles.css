@@ -215,7 +215,15 @@ a {
 .brand img,
 .site-footer img {
   border-radius: 8px;
-  box-shadow: 0 0 28px rgba(184, 156, 255, 0.24);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(184, 156, 255, 0.34), rgba(127, 99, 200, 0.1) 48%, rgba(5, 3, 10, 0.96) 72%),
+    #090512;
+  border: 1px solid rgba(184, 156, 255, 0.54);
+  box-shadow:
+    0 0 0 4px rgba(184, 156, 255, 0.08),
+    0 0 30px rgba(184, 156, 255, 0.48),
+    0 10px 28px rgba(0, 0, 0, 0.42);
+  filter: brightness(1.28) contrast(1.18) saturate(1.22);
 }
 
 .brand img {
@@ -291,15 +299,28 @@ a {
   align-items: center;
   gap: 14px;
   margin-bottom: 22px;
+  border: 1px solid rgba(184, 156, 255, 0.22);
+  border-radius: 8px;
+  background: rgba(5, 3, 10, 0.58);
+  padding: 10px 14px 10px 10px;
+  box-shadow: 0 0 34px rgba(184, 156, 255, 0.16);
+  backdrop-filter: blur(12px);
 }
 
 .hero-logo-lockup img {
   width: 82px;
   height: 82px;
-  border: 1px solid rgba(184, 156, 255, 0.26);
+  border: 1px solid rgba(184, 156, 255, 0.62);
   border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(184, 156, 255, 0.36), rgba(5, 3, 10, 0.94) 70%),
+    #090512;
   object-fit: cover;
-  box-shadow: 0 0 36px rgba(184, 156, 255, 0.3);
+  box-shadow:
+    0 0 0 5px rgba(184, 156, 255, 0.08),
+    0 0 42px rgba(184, 156, 255, 0.52),
+    0 12px 34px rgba(0, 0, 0, 0.48);
+  filter: brightness(1.32) contrast(1.2) saturate(1.24);
 }
 
 .hero-logo-lockup span {
@@ -313,6 +334,7 @@ a {
   font-weight: 950;
   line-height: 1;
   letter-spacing: 0.08em;
+  text-shadow: 0 0 22px rgba(184, 156, 255, 0.26);
 }
 
 .hero-logo-lockup em {
@@ -481,7 +503,16 @@ h3 {
 .logo-orbit img {
   position: relative;
   width: min(72%, 390px);
+  border: 1px solid rgba(184, 156, 255, 0.46);
   border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(184, 156, 255, 0.26), rgba(5, 3, 10, 0.92) 72%),
+    #090512;
+  box-shadow:
+    0 0 0 8px rgba(184, 156, 255, 0.06),
+    0 0 64px rgba(184, 156, 255, 0.36),
+    0 24px 60px rgba(0, 0, 0, 0.46);
+  filter: brightness(1.22) contrast(1.16) saturate(1.18);
 }
 
 .hero-card {
@@ -866,11 +897,12 @@ h3 {
   .hero-logo-lockup {
     gap: 12px;
     margin-bottom: 18px;
+    padding: 9px 11px 9px 9px;
   }
 
   .hero-logo-lockup img {
-    width: 70px;
-    height: 70px;
+    width: 78px;
+    height: 78px;
   }
 
   .hero-logo-lockup strong {
