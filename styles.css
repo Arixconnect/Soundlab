@@ -45,6 +45,21 @@ body::before {
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.38), transparent 70%);
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: auto 0 0;
+  height: 48vh;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 8%, rgba(184, 156, 255, 0.1) 8% 8.4%, transparent 8.4% 18%),
+    linear-gradient(90deg, transparent 0 20%, rgba(255, 255, 255, 0.08) 20% 20.25%, transparent 20.25% 34%),
+    linear-gradient(90deg, transparent 0 45%, rgba(127, 99, 200, 0.12) 45% 45.3%, transparent 45.3% 62%),
+    linear-gradient(90deg, transparent 0 73%, rgba(184, 156, 255, 0.09) 73% 73.35%, transparent 73.35%);
+  opacity: 0.5;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -58,6 +73,114 @@ a {
 .section-wrap {
   width: min(1120px, calc(100% - 32px));
   margin-inline: auto;
+}
+
+.beat-layer {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.beat-tag {
+  position: absolute;
+  border: 1px solid rgba(184, 156, 255, 0.22);
+  border-radius: 8px;
+  background: rgba(5, 3, 10, 0.36);
+  color: rgba(247, 244, 255, 0.18);
+  padding: 10px 14px;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transform: rotate(-7deg);
+}
+
+.tag-808 {
+  top: 18%;
+  left: 5%;
+}
+
+.tag-bars {
+  top: 58%;
+  left: 8%;
+  transform: rotate(6deg);
+}
+
+.tag-booth {
+  top: 22%;
+  right: 7%;
+  transform: rotate(8deg);
+}
+
+.tag-mix {
+  right: 12%;
+  bottom: 16%;
+  transform: rotate(-5deg);
+}
+
+.wave-line,
+.meter {
+  position: absolute;
+  opacity: 0.34;
+}
+
+.wave-line {
+  width: 360px;
+  height: 86px;
+  border-top: 2px solid rgba(184, 156, 255, 0.16);
+  border-bottom: 2px solid rgba(184, 156, 255, 0.08);
+  border-radius: 50%;
+  transform: rotate(-12deg);
+}
+
+.wave-one {
+  top: 36%;
+  right: -90px;
+}
+
+.wave-two {
+  bottom: 12%;
+  left: -120px;
+  transform: rotate(10deg);
+}
+
+.meter {
+  display: grid;
+  grid-template-columns: repeat(9, 8px);
+  align-items: end;
+  gap: 8px;
+  height: 96px;
+}
+
+.meter::before {
+  content: "";
+  display: block;
+  grid-column: 1 / -1;
+  height: 100%;
+  background:
+    linear-gradient(to top, rgba(184, 156, 255, 0.2) 0 28%, transparent 28%),
+    linear-gradient(to top, transparent 0 18%, rgba(184, 156, 255, 0.16) 18% 56%, transparent 56%),
+    linear-gradient(to right, currentColor 0 8px, transparent 8px 16px);
+  color: rgba(184, 156, 255, 0.18);
+  mask-image: repeating-linear-gradient(
+    90deg,
+    #000 0 8px,
+    transparent 8px 16px
+  );
+}
+
+.meter-one {
+  top: 19%;
+  right: 25%;
+  transform: rotate(8deg);
+}
+
+.meter-two {
+  bottom: 20%;
+  left: 29%;
+  transform: rotate(-6deg);
 }
 
 .site-header {
@@ -95,6 +218,12 @@ a {
   box-shadow: 0 0 28px rgba(184, 156, 255, 0.24);
 }
 
+.brand img {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+}
+
 .desktop-nav {
   display: flex;
   align-items: center;
@@ -118,6 +247,7 @@ a {
 }
 
 .hero {
+  position: relative;
   display: grid;
   min-height: 100vh;
   grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
@@ -126,10 +256,71 @@ a {
   padding: 132px 0 80px;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 102px auto auto -34px;
+  width: min(720px, 88vw);
+  height: 430px;
+  border: 1px solid rgba(184, 156, 255, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(5, 3, 10, 0.72), rgba(20, 14, 34, 0.26)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(184, 156, 255, 0.1) 0 2px,
+      transparent 2px 42px
+    );
+  opacity: 0.54;
+}
+
 .hero > *,
 .booking-inner > *,
 .contact-section > * {
   min-width: 0;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-logo-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.hero-logo-lockup img {
+  width: 82px;
+  height: 82px;
+  border: 1px solid rgba(184, 156, 255, 0.26);
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 0 36px rgba(184, 156, 255, 0.3);
+}
+
+.hero-logo-lockup span {
+  display: grid;
+  gap: 2px;
+  text-transform: uppercase;
+}
+
+.hero-logo-lockup strong {
+  font-size: 1.38rem;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.hero-logo-lockup em {
+  color: var(--primary-light);
+  font-size: 0.82rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.44em;
 }
 
 .eyebrow {
@@ -151,9 +342,10 @@ p {
 h1 {
   max-width: 760px;
   margin-bottom: 22px;
-  font-size: clamp(3.2rem, 8vw, 6.9rem);
-  line-height: 0.92;
+  font-size: clamp(3rem, 6.2vw, 5.7rem);
+  line-height: 0.96;
   letter-spacing: 0;
+  text-shadow: 0 4px 34px rgba(0, 0, 0, 0.72);
 }
 
 h2 {
@@ -268,6 +460,22 @@ h3 {
   border: 1px solid rgba(184, 156, 255, 0.2);
   border-radius: 50%;
   box-shadow: inset 0 0 70px rgba(184, 156, 255, 0.15);
+}
+
+.logo-orbit::after {
+  content: "Hiphop recording";
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  border: 1px solid rgba(184, 156, 255, 0.24);
+  border-radius: 8px;
+  background: rgba(5, 3, 10, 0.62);
+  color: var(--primary-light);
+  padding: 9px 12px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 .logo-orbit img {
@@ -638,11 +846,59 @@ h3 {
 
   .hero {
     min-height: auto;
-    padding: 110px 0 56px;
+    padding: 100px 0 56px;
+  }
+
+  .hero::before {
+    inset: 86px -12px auto -12px;
+    width: auto;
+    height: 360px;
+    background:
+      linear-gradient(135deg, rgba(5, 3, 10, 0.86), rgba(20, 14, 34, 0.48)),
+      repeating-linear-gradient(
+        90deg,
+        rgba(184, 156, 255, 0.12) 0 2px,
+        transparent 2px 34px
+      );
+    opacity: 0.86;
+  }
+
+  .hero-logo-lockup {
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .hero-logo-lockup img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .hero-logo-lockup strong {
+    font-size: 1.1rem;
+  }
+
+  .hero-logo-lockup em {
+    font-size: 0.72rem;
+    letter-spacing: 0.36em;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.13em;
   }
 
   h1 {
-    font-size: clamp(3rem, 16vw, 4.6rem);
+    max-width: 12ch;
+    font-size: clamp(2.62rem, 13.2vw, 3.55rem);
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .hero-intro {
+    max-width: 31ch;
+    color: #eee8ff;
+    font-size: 1rem;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.76);
   }
 
   .hero-actions .btn,
@@ -651,11 +907,21 @@ h3 {
   }
 
   .hero-visual {
-    min-height: 390px;
+    min-height: 350px;
   }
 
   .logo-orbit {
     inset: 0 0 58px;
+  }
+
+  .logo-orbit img {
+    width: min(78%, 300px);
+  }
+
+  .logo-orbit::after {
+    left: 14px;
+    bottom: 16px;
+    font-size: 0.64rem;
   }
 
   .hero-card {
@@ -709,5 +975,39 @@ h3 {
     left: 12px;
     max-width: none;
     text-align: center;
+  }
+
+  .beat-tag {
+    opacity: 0.8;
+    padding: 8px 10px;
+    font-size: 0.62rem;
+  }
+
+  .tag-808 {
+    top: 17%;
+    left: auto;
+    right: 8px;
+  }
+
+  .tag-bars {
+    top: 54%;
+    left: -14px;
+  }
+
+  .tag-booth,
+  .tag-mix,
+  .meter-two {
+    display: none;
+  }
+
+  .wave-one {
+    top: 38%;
+    right: -190px;
+  }
+
+  .meter-one {
+    top: 30%;
+    right: 10px;
+    opacity: 0.22;
   }
 }
