@@ -533,6 +533,16 @@ h3 {
   backdrop-filter: blur(14px);
 }
 
+.hero-card-logo {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(184, 156, 255, 0.38);
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 0 28px rgba(184, 156, 255, 0.28);
+}
+
 .card-label,
 .role {
   color: var(--primary-light);
@@ -996,7 +1006,7 @@ h3 {
     right: 12px;
     bottom: 12px;
     left: 12px;
-    display: flex;
+    display: none;
     min-height: 54px;
     align-items: center;
     justify-content: center;
@@ -1005,6 +1015,10 @@ h3 {
     color: #080411;
     font-weight: 900;
     box-shadow: 0 0 38px rgba(184, 156, 255, 0.42);
+  }
+
+  body.has-passed-hero .mobile-sticky-cta {
+    display: flex;
   }
 
   .preview-toast {
