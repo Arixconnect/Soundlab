@@ -717,21 +717,74 @@ h3 {
   font-size: 1.25rem;
 }
 
+.pricing-heading {
+  max-width: 760px;
+}
+
+.pricing-intro {
+  max-width: 620px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
 .pricing-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .price-card {
+  display: flex;
+  min-height: 310px;
+  flex-direction: column;
   padding: 24px;
+}
+
+.price-card:nth-child(4) {
+  grid-column: 1 / 2;
+  justify-self: end;
+  width: min(100%, 354px);
+}
+
+.price-card:nth-child(5) {
+  grid-column: 2 / 3;
+  justify-self: start;
+  width: min(100%, 354px);
+}
+
+.price-badge {
+  align-self: flex-start;
+  margin-bottom: 14px;
+  border: 1px solid rgba(184, 156, 255, 0.36);
+  border-radius: 999px;
+  background: rgba(155, 128, 225, 0.16);
+  color: var(--primary-light);
+  padding: 6px 9px;
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
 }
 
 .price {
   color: var(--primary-light);
-  font-size: 1.25rem;
+  font-size: clamp(2rem, 4vw, 2.7rem);
   font-weight: 900;
+  line-height: 1;
+}
+
+.price-line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 20px 0;
+  background: var(--line);
+}
+
+.price-card p:not(.price) {
+  color: var(--muted);
 }
 
 .price-card a {
+  margin-top: auto;
   color: var(--primary-light);
   font-weight: 800;
 }
@@ -862,6 +915,19 @@ h3 {
   .pricing-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .price-card:nth-child(4),
+  .price-card:nth-child(5) {
+    grid-column: auto;
+    justify-self: stretch;
+    width: auto;
+  }
+
+  .price-card:nth-child(5) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 354px);
+  }
 }
 
 @media (max-width: 680px) {
@@ -986,6 +1052,12 @@ h3 {
   .pricing-grid,
   .impression-grid {
     grid-template-columns: 1fr;
+  }
+
+  .price-card:nth-child(5) {
+    grid-column: auto;
+    justify-self: stretch;
+    width: auto;
   }
 
   .team-card {
