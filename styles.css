@@ -743,6 +743,7 @@ h3 {
 }
 
 .studio-video-cta {
+  justify-self: start;
   margin-top: 2px;
 }
 
