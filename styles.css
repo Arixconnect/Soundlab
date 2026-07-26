@@ -750,7 +750,7 @@ h3 {
 .studio-video-wrap {
   width: min(100%, 420px);
   aspect-ratio: 9 / 16;
-  justify-self: center;
+  justify-self: start;
   align-self: center;
   overflow: hidden;
   border: 1px solid rgba(174, 125, 255, 0.45);
