@@ -1168,6 +1168,10 @@ h3 {
   padding-bottom: clamp(64px, 8vw, 96px);
 }
 
+.contact-section h2 + p {
+  margin-top: 24px;
+}
+
 .contact-card {
   display: grid;
   min-width: min(420px, 100%);
