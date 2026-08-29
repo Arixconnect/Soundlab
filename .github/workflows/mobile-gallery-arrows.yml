@@ -1,0 +1,58 @@
+name: Enable mobile gallery arrows
+
+on:
+  push:
+    paths:
+      - '.github/workflows/mobile-gallery-arrows.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-mobile-gallery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show existing gallery controls on mobile
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('styles.css')
+          s = p.read_text()
+          old = '''  .gallery-heading {
+    display: block;
+  }
+
+  .gallery-controls {
+    display: none;
+  }
+
+  .gallery-slide {
+    flex-basis: 86%;
+  }'''
+          new = '''  .gallery-heading {
+    display: block;
+  }
+
+  .gallery-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+  }
+
+  .gallery-slide {
+    flex-basis: 86%;
+  }'''
+          if old not in s:
+              raise SystemExit('Expected mobile gallery CSS block not found; no changes made.')
+          p.write_text(s.replace(old, new, 1))
+          PY
+      - name: Commit only the mobile control visibility change
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add styles.css
+          git commit -m 'Show recording gallery arrows on mobile'
+          git push
