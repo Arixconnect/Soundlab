@@ -245,6 +245,28 @@ a {
   color: var(--primary-light);
 }
 
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  align-content: center;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(155, 128, 225, 0.12);
+  color: var(--primary-light);
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
 .header-cta {
   border-radius: 8px;
   background: var(--primary);
@@ -814,7 +836,9 @@ h3 {
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   scrollbar-color: rgba(184, 156, 255, 0.5) transparent;
-  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-inline: contain;
+  touch-action: auto;
 }
 
 .gallery-track:active {
@@ -1415,8 +1439,43 @@ h3 {
 }
 
 @media (max-width: 980px) {
+  .site-header {
+    justify-content: flex-start;
+  }
+
+  .menu-toggle {
+    display: grid;
+    margin-left: auto;
+  }
+
   .desktop-nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: 0;
     display: none;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(5, 3, 10, 0.96);
+    padding: 10px;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(18px);
+  }
+
+  .site-header.is-menu-open .desktop-nav {
+    display: grid;
+  }
+
+  .desktop-nav a {
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+
+  .desktop-nav a:hover,
+  .desktop-nav a:focus-visible {
+    background: rgba(155, 128, 225, 0.12);
   }
 
   .hero,
@@ -1519,6 +1578,12 @@ h3 {
   .header-cta {
     padding: 10px 12px;
     font-size: 0.86rem;
+  }
+
+  .menu-toggle {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
   }
 
   .hero {
@@ -1751,5 +1816,11 @@ h3 {
     top: 30%;
     right: 10px;
     opacity: 0.22;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand span {
+    display: none;
   }
 }

@@ -21,7 +21,7 @@
     <meta property="og:image" content="./assets/soundlab-studio-logo.png?v=20260628-final" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="./assets/soundlab-studio-logo.png?v=20260628-final" />
-    <link rel="stylesheet" href="./styles.css?v=20260830-live-final" />
+    <link rel="stylesheet" href="./styles.css?v=20260830-mobile-nav" />
     <title>Soundlab Studio | Muziekstudio & studiosessie boeken</title>
   </head>
   <body>
@@ -40,12 +40,17 @@
         <img src="./assets/soundlab-studio-logo.png?v=20260628-final" alt="Soundlab Studio logo" width="56" height="56" />
         <span>Soundlab Studio</span>
       </a>
-      <nav class="desktop-nav" aria-label="Website navigatie">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Menu openen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="site-navigation" class="desktop-nav" aria-label="Website navigatie">
         <a href="#diensten">Diensten</a>
         <a href="#team">Team</a>
         <a href="#studio">Studio</a>
         <a href="#tarieven">Tarieven</a>
-        <a href="#faq">FAQ</a>
+        <a href="#over-ons">Over ons</a>
       </nav>
       <a class="header-cta js-pending-link" href="#boeken" data-pending-link="SETMORE_GENERAL_BOOKING_LINK">Boek je sessie</a>
     </header>
@@ -326,7 +331,7 @@
         </div>
       </section>
 
-      <section class="section-wrap section about-section" aria-labelledby="about-title">
+      <section id="over-ons" class="section-wrap section about-section" aria-labelledby="about-title">
         <div class="section-heading">
           <p class="eyebrow">Over Soundlab</p>
           <h2 id="about-title">Wat doet Soundlab Studio</h2>
@@ -490,6 +495,26 @@
       updateStickyCta();
       window.addEventListener("scroll", updateStickyCta, { passive: true });
 
+      const siteHeader = document.querySelector(".site-header");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const closeMenu = () => {
+        siteHeader?.classList.remove("is-menu-open");
+        menuToggle?.setAttribute("aria-expanded", "false");
+        menuToggle?.setAttribute("aria-label", "Menu openen");
+      };
+      menuToggle?.addEventListener("click", () => {
+        const isOpen = siteHeader?.classList.toggle("is-menu-open") ?? false;
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
+      });
+      document.querySelectorAll(".desktop-nav a").forEach((link) => link.addEventListener("click", closeMenu));
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMenu();
+      });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 980) closeMenu();
+      });
+
       const galleryTrack = document.querySelector(".gallery-track");
       const scrollGallery = (direction) => {
         if (!galleryTrack) return;
@@ -503,13 +528,16 @@
         let dragStart = 0;
         let scrollStart = 0;
         galleryTrack.addEventListener("pointerdown", (event) => {
+          if (event.pointerType !== "mouse") return;
           isDragging = true;
           dragStart = event.clientX;
           scrollStart = galleryTrack.scrollLeft;
           galleryTrack.setPointerCapture(event.pointerId);
         });
         galleryTrack.addEventListener("pointermove", (event) => {
-          if (isDragging) galleryTrack.scrollLeft = scrollStart - (event.clientX - dragStart);
+          if (!isDragging || event.pointerType !== "mouse") return;
+          event.preventDefault();
+          galleryTrack.scrollLeft = scrollStart - (event.clientX - dragStart);
         });
         ["pointerup", "pointercancel"].forEach((eventName) => {
           galleryTrack.addEventListener(eventName, () => { isDragging = false; });
